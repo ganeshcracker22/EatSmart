@@ -1,17 +1,20 @@
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from models import FoodAnalysisRequest, FoodAnalysisResponse, NutritionInfo
-from data import FOOD_DATA
-from logic import simulate_twin, calculate_consequences, calculate_risk_score, get_recommendation
+from backend.models import FoodAnalysisRequest, FoodAnalysisResponse, NutritionInfo
+from backend.data import FOOD_DATA
+from backend.logic import simulate_twin, calculate_consequences, calculate_risk_score, get_recommendation
 
 # Load environment variables
 load_dotenv()
 
 app = FastAPI(title="EatSmart AI Backend")
+BASE_DIR = Path(__file__).resolve().parent.parent
+FRONTEND_DIR = BASE_DIR / "frontend"
 
 # Configuration for Stitch API (can be used in future integrations)
 STITCH_API_KEY = os.getenv("STITCH_API_KEY")
@@ -28,25 +31,24 @@ app.add_middleware(
 
 # Serve static assets
 # Ensure the 'assets' directory exists before mounting
-if os.path.exists("assets"):
-    app.mount("/assets", StaticFiles(directory="assets"), name="assets")
+assets_dir = FRONTEND_DIR / "assets"
+if assets_dir.exists():
+    app.mount("/assets", StaticFiles(directory=str(assets_dir)), name="assets")
 
 # Serve the futuristic frontend at the root
 @app.get("/")
 def read_index():
-    if os.path.exists("index.html"):
-        return FileResponse("index.html")
+    index_file = FRONTEND_DIR / "index.html"
+    if index_file.exists():
+        return FileResponse(str(index_file))
     return {"message": "NutriTwin Backend is active. Frontend index.html not found."}
 
 @app.get("/app.js")
 def read_app_js():
-    if os.path.exists("app.js"):
-        return FileResponse("app.js")
-    return HTTPException(status_code=404, detail="app.js not found")
-
-@app.get("/")
-def read_root():
-    return {"message": "NutriTwin Risk AI Backend is running."}
+    app_js_file = FRONTEND_DIR / "app.js"
+    if app_js_file.exists():
+        return FileResponse(str(app_js_file))
+    raise HTTPException(status_code=404, detail="app.js not found")
 
 @app.post("/analyze-food", response_model=FoodAnalysisResponse)
 def analyze_food(request: FoodAnalysisRequest):
@@ -107,4 +109,4 @@ def analyze_food(request: FoodAnalysisRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000)

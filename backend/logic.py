@@ -1,5 +1,5 @@
-from models import NutritionInfo, FoodTwinSimulation, ConsequenceEngine, Recommendation
-from data import FOOD_DATA, ALTERNATIVES
+from backend.models import NutritionInfo, FoodTwinSimulation, ConsequenceEngine, Recommendation
+from backend.data import FOOD_DATA, ALTERNATIVES
 
 def simulate_twin(nutrition: NutritionInfo, goal: str) -> FoodTwinSimulation:
     # Rule-based simulation
