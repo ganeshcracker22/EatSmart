@@ -36,7 +36,7 @@ const analyzeFood = async (foodName, goal) => {
     console.log("EatSmart Analysis:", data);
     return data;
   } catch (error) {
-    print("Error connecting to backend:", error);
+    console.error("Error connecting to backend:", error);
   }
 };
 ```

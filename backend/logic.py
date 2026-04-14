@@ -79,10 +79,10 @@ def get_recommendation(food_name: str, nutrition: NutritionInfo, current_score: 
     
     # Simple risk reduction logic
     reduction = 0.0
-    if current_score > 30:
-        reduction = 40.0
-    elif current_score > 60:
+    if current_score > 60:
         reduction = 75.0
+    elif current_score > 30:
+        reduction = 40.0
         
     return Recommendation(
         suggested_alternative=alt_name,
