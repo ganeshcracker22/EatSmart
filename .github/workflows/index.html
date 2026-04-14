@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>EatSmart Risk AI - High Precision Diagnostics</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#0c0e12",
+                        "primary": "#9cff93",
+                        "primary-dim": "#00ec3b",
+                        "secondary": "#ff7166",
+                        "tertiary": "#8ff5ff",
+                        "surface": "#0c0e12",
+                        "surface-container-low": "#111318",
+                        "surface-container-high": "#1d2025",
+                        "on-background": "#f6f6fc",
+                        "on-surface": "#f6f6fc",
+                        "on-surface-variant": "#aaabb0"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .biometric-grid {
+            background-image: linear-gradient(to right, #111318 1px, transparent 1px), linear-gradient(to bottom, #111318 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .glow-border {
+            box-shadow: 0 0 15px rgba(156, 255, 147, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen selection:bg-primary selection:text-on-primary">
+    <header class="bg-[#0c0e12] fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-[#00FF41]">fingerprint</span>
+            <h1 class="text-xl font-bold text-[#00FF41] font-['Space_Grotesk'] tracking-widest uppercase">EATSMART</h1>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined text-slate-500 hover:text-[#00FF41] transition-colors cursor-pointer">notifications</span>
+            <div class="w-8 h-8 rounded-full border border-primary/30 overflow-hidden">
+                <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuButxVPs-PeAO8T8Q_N8UkclNX2OZE0cCy1gPG2ccUWQACfE3f7QfCuKHuxItmw6bWCvO1zxSQ3a2rXYQ1ALv1rzxxV41ujb4M_4OJ8oeLwKZ9jxZbFEOxY6XuMGIgcgS3oR1XuM_HanhKpJkX4wmh3ZT44CsHeqMR-5Ci1z2Kg7DJh9J-QpK9WW1e2C6kqLzZejO3RzM1lrhVS8D2bDjnn5fTECmUOnJVf9i77bu8c4CYmS87uKQdzsvwe2ErgHNxRcI7XXbRMbnc"/>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-32 px-6 biometric-grid min-h-screen relative overflow-hidden">
+        <div class="absolute top-1/4 -left-20 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <section class="relative z-10 mb-12">
+            <div class="flex flex-col gap-1">
+                <span class="font-label text-xs tracking-[0.3em] text-primary uppercase font-bold">Biological Twin Status: Active</span>
+                <h2 class="font-headline text-5xl md:text-7xl font-bold tracking-tighter leading-none mt-2">EATSMART <span class="text-primary-dim">RISK AI</span></h2>
+                <p class="font-body text-on-surface-variant max-w-md mt-6 text-lg leading-relaxed">Analyzing molecular data markers to project real-time health trajectories through high-precision AI diagnostics.</p>
+            </div>
+        </section>
+
+        <section class="relative z-10 mb-16 flex flex-col items-center">
+            <!-- INPUT FIELD -->
+            <div class="mb-8 w-full max-w-md">
+                <input type="text" id="food-input-field" placeholder="INPUT SAMPLE (E.G. PIZZA)" 
+                       class="w-full bg-transparent border-b-2 border-outline-variant/30 text-center font-headline text-2xl py-4 focus:border-primary focus:outline-none transition-all placeholder:text-outline-variant/50">
+            </div>
+
+            <div class="group relative flex justify-center items-center">
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div class="w-[320px] h-[320px] border border-primary/10 rounded-full animate-pulse"></div>
+                </div>
+                <!-- SCAN BUTTON -->
+                <button id="scan-food-btn" class="relative flex flex-col items-center justify-center w-64 h-64 rounded-full bg-surface-container-highest/40 backdrop-blur-xl border border-primary/20 glow-border group-hover:border-primary/60 group-active:scale-95 transition-all duration-300">
+                    <div class="absolute inset-4 rounded-full border border-dashed border-primary/20 group-hover:rotate-45 transition-transform duration-1000"></div>
+                    <span class="material-symbols-outlined text-6xl text-primary drop-shadow-[0_0_12px_rgba(156,255,147,0.5)]">center_focus_strong</span>
+                    <span class="mt-4 font-headline text-xl font-bold tracking-[0.1em] text-on-surface">SCAN FOOD</span>
+                    <div class="mt-2 flex gap-1 items-center">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+                        <span class="font-label text-[10px] uppercase text-primary-dim font-extrabold">Vision AI Online</span>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 max-w-5xl mx-auto">
+            <!-- Risk Score Card -->
+            <div class="md:col-span-2 bg-surface-container-low p-8 rounded-lg border-l-2 border-secondary relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-32 h-32 opacity-10 pointer-events-none">
+                    <span class="material-symbols-outlined text-9xl text-secondary" style="font-variation-settings: 'FILL' 1;">warning</span>
+                </div>
+                <div class="relative z-10">
+                    <span class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold">Inflammatory Risk Index</span>
+                    <h3 id="risk-index-value" class="font-headline text-6xl font-bold text-on-surface mt-2 italic">00.0%</h3>
+                    <p class="font-body text-sm text-on-surface-variant mt-6 max-w-sm">High levels of systemic oxidative stress detected. Your biological twin suggests immediate glucose stabilization protocols.</p>
+                </div>
+            </div>
+
+            <!-- Recovery Level -->
+            <div class="bg-surface-container-high p-8 rounded-lg relative overflow-hidden flex flex-col justify-between">
+                <div>
+                    <span class="font-label text-[10px] uppercase tracking-widest text-tertiary font-bold">Metabolic Recovery</span>
+                    <div class="mt-4 flex items-end gap-2">
+                        <h3 id="recovery-val" class="font-headline text-4xl font-bold text-on-surface">--</h3>
+                        <span class="font-headline text-xl text-tertiary mb-1">/100</span>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <div class="w-full h-1 bg-surface-container-highest rounded-full overflow-hidden">
+                        <div id="recovery-bar" class="w-[0%] h-full bg-gradient-to-r from-tertiary to-tertiary shadow-[0_0_8px_rgba(0,222,236,0.4)] transition-all duration-1000"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Insight Panel -->
+            <div class="md:col-span-3 bg-surface-container-low p-8 rounded-lg border-l-2 border-primary relative group cursor-pointer overflow-hidden">
+                <div class="flex gap-6 items-center">
+                    <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 shrink-0">
+                        <span class="material-symbols-outlined text-primary text-sm">psychology</span>
+                    </div>
+                    <div>
+                        <span class="font-label text-[10px] uppercase tracking-widest text-primary font-bold">Predictive AI Insight</span>
+                        <p id="ai-insight-text" class="font-headline text-xl font-medium text-on-surface leading-tight mt-2">
+                            "Awaiting molecular data scan..."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-20 bg-[#0c0e12]/80 backdrop-blur-xl z-50">
+        <a class="flex flex-col items-center justify-center text-[#00FF41] border-t-2 border-[#00FF41] pt-2" href="#">
+            <span class="material-symbols-outlined text-2xl">grid_view</span>
+            <span class="text-[10px] font-bold mt-1">CORE</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-slate-600 pt-2" href="#">
+            <span class="material-symbols-outlined text-2xl">center_focus_strong</span>
+            <span class="text-[10px] font-bold mt-1">SCAN</span>
+        </a>
+    </nav>
+
+    <script src="app.js"></script>
+</body>
+</html>
